@@ -19,6 +19,6 @@ public class JocDaus {
     }
 
     public String toString() {
-        return "Juego dados {Dado=" + Arrays.toString(this.dau) + '}';
+        return "Juego Dado= " + Arrays.toString(this.dau) ;
     }
 }

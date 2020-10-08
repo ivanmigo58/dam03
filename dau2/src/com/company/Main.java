@@ -22,19 +22,21 @@ public class Main {
 	    int ganadas = 0;
 	    JocDaus joc = new JocDaus();
 
-        for (int opciones = menu(); opciones != 0 ; menu()) {
+        for (int opciones = menu(); opciones != 0; opciones = menu()) {
             ++lanzamientos;
             boolean b = joc.jugar();
             System.out.println(joc);
             if (b) {
-                System.out.println("Has guanyat!");
+                System.out.println("Has ganado!");
                 ++ganadas;
             }
         }
 
+        System.out.println("En " + lanzamientos + " lanzamientos");
         System.out.println("Has ganado " + ganadas + " partidas");
-
     }
+
+
     static {
         scanner = new Scanner((System.in));
     }

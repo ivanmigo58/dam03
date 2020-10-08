@@ -13,5 +13,5 @@ public class Dau {
         return this.valor;
     }
 
-    public String toString() {return "Dado{valor=" + this.valor + '}';}
+    public String toString() {return "Dado " + this.valor ;}
 }
