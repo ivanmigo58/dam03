@@ -1,7 +1,11 @@
 package com.company.Model;
 
+import com.company.Control.OperacionsBanc;
+import com.company.Exceptions.AccountNotFoundException;
 import com.company.Exceptions.BankAccountException;
 import com.company.Exceptions.ExceptionMessage;
+import com.company.Exceptions.TransferException;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -78,6 +82,19 @@ public class CompteEstalvi {
 
     public List<Client> getLlista_usuaris() {
         return llista_usuaris;
+    }
+
+    // Realiza la transferencia de una cuenta a otra
+    public void transferencia(String account, double dineroTransferir) throws TransferException {
+        try {
+            CompteEstalvi compteTransferencia = OperacionsBanc.verifyAccount(account);
+            // Lo quito de esta cuenta y lo ingreso en la otra
+            this.treure(dineroTransferir);
+            compteTransferencia.ingressar(dineroTransferir);
+        } catch (AccountNotFoundException | BankAccountException e) {
+            System.out.println(e.getMessage());
+            throw new TransferException(ExceptionMessage.TRANSFER_ERROR);
+        }
     }
 
 }
