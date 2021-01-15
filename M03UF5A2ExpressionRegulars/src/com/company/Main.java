@@ -16,7 +16,7 @@ public class Main {
 
 
     public static void main(String[] args) throws IOException {
-        // regularExpression();
+        regularExpression();
         sinRegularExpression();
     }
 
@@ -69,10 +69,6 @@ public class Main {
                             }
                             // Si ha llegado hasta aqui, ha completado la palabra entera
                             if (j == palabra.length() - 1) {
-                                // TODO NO FUNCIONA
-                                if ( palabra.equals(nombres[2]) && (linea.charAt(i - 1) == palabras2[0].charAt(0)) ) {
-                                    break;
-                                }
                                 vecesEncontrado[x]++;
                             }
                         }
@@ -80,6 +76,8 @@ public class Main {
                 }
                 x++;
             }
+            // A los follets le quito un papanoel porque siempre encuentra uno de mas
+            vecesEncontrado[2] -= vecesEncontrado[0];
             mostrarResultados(vecesEncontrado);
             linea = bufferedReader.readLine();
         }
