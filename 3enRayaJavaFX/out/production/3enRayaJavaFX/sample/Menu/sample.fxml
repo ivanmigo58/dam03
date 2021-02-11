@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Menu.MenuController">
+    <children>
+        <Button fx:id="jugar" layoutX="222.0" layoutY="169.0" mnemonicParsing="false" onAction="#clickJugar" prefHeight="79.0" prefWidth="157.0" text="JUGAR" />
+        <Label alignment="CENTER" prefHeight="79.0" prefWidth="600.0" text="TRES EN RAYA" textAlignment="CENTER" textFill="#000dff">
+            <font>
+                <Font name="Segoe Print Bold" size="42.0" />
+            </font>
+        </Label>
+        <Button fx:id="salir" layoutX="14.0" layoutY="335.0" mnemonicParsing="false" onAction="#clickSalir" prefHeight="51.0" prefWidth="80.0" text="SALIR" />
+        <TextField fx:id="textFieldNombre" layoutX="222.0" layoutY="124.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="157.0" promptText="Intruce tu nombre" />
+    </children>
+</Pane>
+
