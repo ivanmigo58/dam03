@@ -43,8 +43,6 @@ public class Controller implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Oculto los botones del juego
-        panelBotones.setVisible(false);
         // Añado el jugador a la lista
         jugadorList.add(jugadorActivo);
         // Renuevo el label de nombre

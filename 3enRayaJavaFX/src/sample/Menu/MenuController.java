@@ -27,7 +27,7 @@ public class MenuController {
             actualizarJugadorActual();
             Parent root = FXMLLoader.load(getClass().getResource("../Juego/juego.fxml"));
             Stage stage = new Stage();
-            stage.setTitle("JUGAR");
+            stage.setTitle("3 en Raya");
             stage.setScene(new Scene(root));
             stage.setResizable(false);
             stage.show();
