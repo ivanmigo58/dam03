@@ -3,6 +3,7 @@ package sample.Juego;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -10,7 +11,6 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 import sample.Jugador.Jugador;
 
-import java.awt.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -73,49 +73,51 @@ public class Controller implements Initializable {
         }
         // Creo el juego
         juego = new Juego(modoJuego);
-        // Muestro los botones del juego
-        panelBotones.setVisible(true);
+        // Rellena los botones
+        for (Node button : panelBotones.getChildren()) {
+            juego.buttons.add((Button)button);
+        }
+        habilitarBotones();
+        // Reseteo el texto de los botones
+        restartButtons();
         botonInicio.setVisible(false);
     }
 
 
-    // Cuando se clica en el tablero
-    public void click(ActionEvent actionEvent) {
+    // Click en el tres en ralla
+    public void clickButton(ActionEvent actionEvent) {
         Button button = (Button) actionEvent.getSource();
-        // Si el boton no se ha clicado
-        if (modoJuego == 1) {
-            jugarVSpc(button);
-        } else if (modoJuego == 2) {
-            jugarPCvsPC(button);
-        } else if (modoJuego == 3) {
-            System.out.println("yes");
-            jugarVSjugador(button);
+        juego.botonClick(button);
+        // Compruebo si hay ganador
+        if (juego.comprobarResultado()) {
+            botonInicio.setVisible(true);
+            deshabilitarBotones();
+        }
+        // Si ya se han pulsado todos los botones
+        if (juego.botonesSeleccionados.size() >= juego.buttons.size()) {
+            botonInicio.setVisible(true);
+            deshabilitarBotones();
         }
     }
 
-    // Modo 1
-    private void jugarVSpc(javafx.scene.control.Button button) {
 
+    // Restablece el texo de los botones
+    private void restartButtons() {
+        for (Button button : juego.buttons) {
+            button.setText(null);
+        }
     }
 
-    // Modo 2
-    private void jugarPCvsPC(javafx.scene.control.Button button) {
-
+    // Deshabilita los botones
+    private void deshabilitarBotones() {
+        for (Button button : juego.buttons) {
+            button.setDisable(true);
+        }
     }
 
-    // Modo 3
-    private void jugarVSjugador(javafx.scene.control.Button button) {
-        // Si el boton no se ha pulsado
-        if (!juego.botonPulsado(button.getId())) {
-            button.setText(String.valueOf(juego.turno));
-            // Compruebo si hay un ganador
-            if (!juego.comprobarResultado()) {
-                juego.cambioTurno();
-            }
-            // Hay un ganador
-            else if (juego.comprobarResultado()) {
-                System.out.println("HAY UN GANADOR");
-            }
+    private void habilitarBotones() {
+        for (Button button : juego.buttons) {
+            button.setDisable(false);
         }
     }
 }

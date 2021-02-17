@@ -18,15 +18,15 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Button fx:id="B11" mnemonicParsing="false" onAction="#click" prefHeight="353.0" prefWidth="309.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                <Button fx:id="B01" mnemonicParsing="false" onAction="#click" prefHeight="353.0" prefWidth="309.0" GridPane.columnIndex="1" />
-                <Button fx:id="B02" mnemonicParsing="false" onAction="#click" prefHeight="353.0" prefWidth="309.0" GridPane.columnIndex="2" />
-                <Button fx:id="B10" mnemonicParsing="false" onAction="#click" prefHeight="353.0" prefWidth="309.0" GridPane.rowIndex="1" />
-                <Button fx:id="B00" mnemonicParsing="false" onAction="#click" prefHeight="353.0" prefWidth="309.0" />
-                <Button fx:id="B12" mnemonicParsing="false" onAction="#click" prefHeight="353.0" prefWidth="309.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-                <Button fx:id="B20" mnemonicParsing="false" onAction="#click" prefHeight="353.0" prefWidth="309.0" GridPane.rowIndex="2" />
-                <Button fx:id="B21" mnemonicParsing="false" onAction="#click" prefHeight="353.0" prefWidth="309.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                <Button fx:id="B22" mnemonicParsing="false" onAction="#click" prefHeight="353.0" prefWidth="309.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                <Button fx:id="B11" disable="true" mnemonicParsing="false" onAction="#clickButton" prefHeight="353.0" prefWidth="309.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                <Button fx:id="B01" disable="true" mnemonicParsing="false" onAction="#clickButton" prefHeight="353.0" prefWidth="309.0" GridPane.columnIndex="1" />
+                <Button fx:id="B02" disable="true" mnemonicParsing="false" onAction="#clickButton" prefHeight="353.0" prefWidth="309.0" GridPane.columnIndex="2" />
+                <Button fx:id="B10" disable="true" mnemonicParsing="false" onAction="#clickButton" prefHeight="353.0" prefWidth="309.0" GridPane.rowIndex="1" />
+                <Button fx:id="B00" disable="true" mnemonicParsing="false" onAction="#clickButton" prefHeight="353.0" prefWidth="309.0" />
+                <Button fx:id="B12" disable="true" mnemonicParsing="false" onAction="#clickButton" prefHeight="353.0" prefWidth="309.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                <Button fx:id="B20" disable="true" mnemonicParsing="false" onAction="#clickButton" prefHeight="353.0" prefWidth="309.0" GridPane.rowIndex="2" />
+                <Button fx:id="B21" disable="true" mnemonicParsing="false" onAction="#clickButton" prefHeight="353.0" prefWidth="309.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                <Button fx:id="B22" disable="true" mnemonicParsing="false" onAction="#clickButton" prefHeight="353.0" prefWidth="309.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             </children>
         </GridPane>
         <RadioButton fx:id="radioButton1" layoutX="491.0" layoutY="99.0" mnemonicParsing="false" text="RadioButton" textFill="#13b6d3">
@@ -41,6 +41,6 @@
                 <Font name="Droid Sans Bold" size="18.0" />
             </font>
         </Label>
-        <Button fx:id="botonInicio" layoutX="491.0" layoutY="273.0" mnemonicParsing="false" onAction="#clickStart" prefHeight="45.0" prefWidth="105.0" text="START" textFill="WHITE" background="#13b6d3" />
+        <Button fx:id="botonInicio" layoutX="491.0" layoutY="273.0" mnemonicParsing="false" onAction="#clickStart" prefHeight="45.0" prefWidth="105.0" text="START" textFill="WHITE" />
     </children>
 </AnchorPane>
