@@ -37,7 +37,6 @@ public class Controller implements Initializable {
     List<Jugador> jugadorList = new ArrayList<>();
     static public Jugador jugadorActivo;
     private final String[] opcionesRadioButton = {"vs PC", "PC vs PC", "vs jugador 2"};
-    private int modoJuego = 0;
     private RadioButton[] radioButtons;
 
 
@@ -63,6 +62,7 @@ public class Controller implements Initializable {
         // Obtengo el checkbutton clicado
         RadioButton selectedRadioButton = (RadioButton) escoger.getSelectedToggle();
         String id = selectedRadioButton.getId();
+        int modoJuego = 0;
         for (int i = 0; i < radioButtons.length; i++) {
             // Si el boton clicado es ese, pongo el modo de juego
             if (id.equals(radioButtons[i].getId())) {
@@ -70,15 +70,19 @@ public class Controller implements Initializable {
             }
         }
         // Creo el juego
-        juego = new Juego(modoJuego);
+        juego = new Juego(modoJuego, this);
         // Rellena los botones
         for (Node button : panelBotones.getChildren()) {
             juego.buttons.add((Button)button);
         }
-        habilitarBotones();
+        juego.habilitarBotones();
         // Reseteo el texto de los botones
         restartButtons();
         botonInicio.setVisible(false);
+        // Modo ordenador vs ordenador
+        if (modoJuego == 2) {
+            juego.botonClick(null);
+        }
     }
 
 
@@ -86,16 +90,6 @@ public class Controller implements Initializable {
     public void clickButton(ActionEvent actionEvent) {
         Button button = (Button) actionEvent.getSource();
         juego.botonClick(button);
-        // Compruebo si hay ganador
-        if (juego.comprobarResultado()) {
-            botonInicio.setVisible(true);
-            deshabilitarBotones();
-        }
-        // Si ya se han pulsado todos los botones
-        if (juego.botonesSeleccionados.size() >= juego.buttons.size()) {
-            botonInicio.setVisible(true);
-            deshabilitarBotones();
-        }
     }
 
 
@@ -106,16 +100,10 @@ public class Controller implements Initializable {
         }
     }
 
-    // Deshabilita los botones
-    private void deshabilitarBotones() {
-        for (Button button : juego.buttons) {
-            button.setDisable(true);
-        }
+    // Restablece el juego
+    void restartGame() {
+        juego.deshabilitarBotones();
+        botonInicio.setVisible(true);
     }
 
-    private void habilitarBotones() {
-        for (Button button : juego.buttons) {
-            button.setDisable(false);
-        }
-    }
 }

@@ -1,3 +1,12 @@
-.button {
-
+#buttons {
+    -fx-text-fill: #006464;
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-text-fill: white;
 }
+
+.buttonsGanadores {
+    -fx-text-fill: #13b6d3;
+    -fx-font-size: 50pt;
+}
+

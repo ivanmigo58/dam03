@@ -10,20 +10,23 @@ public class Juego {
     List<String> botonesSeleccionados = new ArrayList<>();
     private int modoJuego;
 
-    public Juego(int modoJuego) {
+    private Turno tablero[][] = new Turno[3][3];
+    Turno turno = Turno.X;
+    private int[] botonesGanadores = new int[3];
+    private Button buttonClick;
+    List<Button> buttons = new ArrayList<>();
+    private Controller controller;
+    private String[] posicionesGanadoras;
+
+    public Juego(int modoJuego, Controller controller) {
         this.modoJuego = modoJuego;
+        this.controller = controller;
     }
 
 
     private enum Turno {
         X, O;
     }
-
-    private Turno tablero[][] = new Turno[3][3];
-    Turno turno = Turno.X;
-    private int[] botonesGanadores = new int[3];
-    private Button buttonClick;
-    List<Button> buttons = new ArrayList<>();
 
 
     // Reviso si ese boton ya se ha pulsado
@@ -32,9 +35,13 @@ public class Juego {
         if (modoJuego == 1) {
             jugadorVSpc();
         } else if (modoJuego == 2) {
-            PCvsPC();
+            pcVSpc();
         } else if (modoJuego == 3) {
             jugadorVSjugador();
+        }
+
+        if (botonesSeleccionados.size() >= buttons.size()) {
+            controller.restartGame();
         }
     }
 
@@ -58,7 +65,7 @@ public class Juego {
                     int randomX = (int) (Math.random() * 3 + 0);
                     int randomXX = (int) (Math.random() * 3 + 0);
                     idButton = "B" + randomX + randomXX;
-                } while (botonClick(idButton));
+                } while (botonClicado(idButton));
                 // Marco el boton de esa posicion
                 for (Button button : buttons) {
                     if (button.getId().equals(idButton)) {
@@ -66,17 +73,19 @@ public class Juego {
                         break;
                     }
                 }
-                if (!comprobarResultado()) {
-                    cambioTurno();
+                if (comprobarResultado()) {
+                    controller.restartGame();
+                    mostrarLineaGanadora(posicionesGanadoras);
+
                 } else {
-                    hayGanador();
+                    cambioTurno();
                 }
             }
         }
     }
 
     // Modo 2
-    private void PCvsPC() {
+    private void pcVSpc() {
         // Siempre que no se hayan pulsado todos los botones
         if (botonesSeleccionados.size() < buttons.size()) {
             String idButton = null;
@@ -85,7 +94,7 @@ public class Juego {
                 int randomX = (int) (Math.random() * 3 + 0);
                 int randomXX = (int) (Math.random() * 3 + 0);
                 idButton = "B" + randomX + randomXX;
-            } while (botonClick(idButton));
+            } while (botonClicado(idButton));
             // Marco el boton de esa posicion
             for (Button button : buttons) {
                 if (button.getId().equals(idButton)) {
@@ -95,7 +104,10 @@ public class Juego {
             }
             if (!comprobarResultado()) {
                 cambioTurno();
-                PCvsPC();
+                pcVSpc();
+            } else {
+                controller.restartGame();
+                mostrarLineaGanadora(posicionesGanadoras);
             }
         }
     }
@@ -103,21 +115,22 @@ public class Juego {
     // Modo 3
     private void jugadorVSjugador() {
         // Si el boton no se ha pulsado
-        if (!botonClick(buttonClick.getId())) {
+        if (!botonClicado(buttonClick.getId())) {
             buttonClick.setText(String.valueOf(turno));
             // Compruebo si hay un ganador
-            if (!comprobarResultado()) {
-                cambioTurno();
+            if (comprobarResultado()) {
+                controller.restartGame();
+                mostrarLineaGanadora(posicionesGanadoras);
             }
-            // Hay un ganador
+            // NO hay un ganador
             else {
-                hayGanador();
+                cambioTurno();
             }
         }
     }
 
     // Comprueba si ese boton ya ha sido pulsado para el tres en raya
-    boolean botonClick(String id) {
+    boolean botonClicado(String id) {
         boolean pulsado = false;
         for (String boton : botonesSeleccionados) {
             if (boton.equals(id)) {
@@ -142,35 +155,43 @@ public class Juego {
 
         // Primera linea horizontal
         if ( (tablero[0][0] != (null)) && (tablero[0][0].equals(tablero[0][1]) && tablero[0][1].equals(tablero[0][2]) )) {
+            posicionesGanadoras = new String[]{"00", "01", "02"};
             ganador = true;
         }
         // Segunda linea horizontal
         else if ( (tablero[1][0] != (null)) && (tablero[1][0].equals(tablero[1][1]) && tablero[1][1].equals(tablero[1][2]) )) {
+            posicionesGanadoras = new String[]{"10", "11", "12"};
             ganador = true;
         }
         // Tercera linea horizontal
         else if ( (tablero[2][0] != (null)) && (tablero[2][0].equals(tablero[2][1]) && tablero[2][1].equals(tablero[2][2]) )) {
+            posicionesGanadoras = new String[]{"20", "21", "22"};
             ganador = true;
         }
 
         // Primera linea vertical
         else if ( (tablero[0][0] != (null)) && (tablero[0][0].equals(tablero[1][0]) && tablero[1][0].equals(tablero[2][0]) )) {
+            posicionesGanadoras = new String[]{"00", "10", "20"};
             ganador = true;
         }
         // Segunda linea vertical
         else if ( (tablero[0][1] != (null)) && (tablero[0][1].equals(tablero[1][1]) && tablero[1][1].equals(tablero[2][1]) )) {
+            posicionesGanadoras = new String[]{"01", "11", "21"};
             ganador = true;
         }
         // Tercera vertical
         else if ( (tablero[0][2] != (null)) && (tablero[0][2].equals(tablero[1][2]) && tablero[1][2].equals(tablero[2][2]) )) {
+            posicionesGanadoras = new String[]{"02", "12", "22"};
             ganador = true;
         }
         // Diagonal de izquierda a derecha
         else if ( (tablero[0][0] != (null)) && (tablero[0][0].equals(tablero[1][1]) && tablero[1][1].equals(tablero[2][2]) )) {
+            posicionesGanadoras = new String[]{"00", "11", "22"};
             ganador = true;
         }
         // Diagonal de derecha a izquierda
         else if ( (tablero[0][2] != (null)) && (tablero[0][2].equals(tablero[1][1]) && tablero[1][1].equals(tablero[2][0]) )) {
+            posicionesGanadoras = new String[]{"02", "11", "20"};
             ganador = true;
         }
         return ganador;
@@ -186,8 +207,30 @@ public class Juego {
         }
     }
 
-    // Se ejecuta cuando hay un ganador
-    private void hayGanador() {
-
+    // Muestra los botones que han hecho tres en raya pasando el ID de estos
+    private void mostrarLineaGanadora(String[] idButtons) {
+        for (String id : idButtons) {
+            for (Button button : buttons) {
+                if (button.getId().equals("B" + id)) {
+                    button.getStyleClass().add("buttonsGanadores");
+                }
+            }
+        }
     }
+
+    // Deshabilita los botones y borra el estilo ganador
+    void deshabilitarBotones() {
+        for (Button button : buttons) {
+            button.setDisable(true);
+            button.getStyleClass().removeAll("buttonsGanadores");
+        }
+    }
+
+    // Activar los botones
+    void habilitarBotones() {
+        for (Button button : buttons) {
+            button.setDisable(false);
+        }
+    }
+
 }

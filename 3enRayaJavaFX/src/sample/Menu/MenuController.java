@@ -28,7 +28,9 @@ public class MenuController {
             Parent root = FXMLLoader.load(getClass().getResource("../Juego/juego.fxml"));
             Stage stage = new Stage();
             stage.setTitle("3 en Raya");
-            stage.setScene(new Scene(root));
+            Scene scene = new Scene(root);
+            scene.getStylesheets().add("styles.css");
+            stage.setScene(scene);
             stage.setResizable(false);
             stage.show();
             // Hide this current window (if this is what you want)
