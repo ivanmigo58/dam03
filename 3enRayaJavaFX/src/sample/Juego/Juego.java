@@ -149,6 +149,18 @@ public class Juego {
         return pulsado;
     }
 
+    boolean checkBotonPulsado(Button botonPulsado) {
+        boolean pulsado = false;
+        for (String idButton : botonesSeleccionados) {
+            if (idButton.equals(botonPulsado.getId())) {
+                pulsado = true;
+                break;
+            }
+        }
+        return pulsado;
+    }
+
+
     // Comprueba si hay un ganador
     boolean comprobarResultado() {
         boolean ganador = false;
@@ -193,6 +205,9 @@ public class Juego {
         else if ( (tablero[0][2] != (null)) && (tablero[0][2].equals(tablero[1][1]) && tablero[1][1].equals(tablero[2][0]) )) {
             posicionesGanadoras = new String[]{"02", "11", "20"};
             ganador = true;
+        }
+        else {
+            posicionesGanadoras = null;
         }
         return ganador;
     }

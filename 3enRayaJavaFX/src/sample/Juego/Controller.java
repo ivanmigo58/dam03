@@ -89,7 +89,9 @@ public class Controller implements Initializable {
     // Click en el tres en ralla
     public void clickButton(ActionEvent actionEvent) {
         Button button = (Button) actionEvent.getSource();
-        juego.botonClick(button);
+        if (!juego.checkBotonPulsado(button)) {
+            juego.botonClick(button);
+        }
     }
 
 
@@ -97,6 +99,7 @@ public class Controller implements Initializable {
     private void restartButtons() {
         for (Button button : juego.buttons) {
             button.setText(null);
+            button.getStyleClass().removeAll("buttonsGanadores");
         }
     }
 

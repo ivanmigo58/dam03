@@ -1,12 +1,44 @@
 #buttons {
-    -fx-text-fill: #006464;
     -fx-border-radius: 20;
     -fx-background-radius: 20;
-    -fx-text-fill: white;
+    -fx-background-color: white;
+    -fx-text-fill: #13b6d3;
+    -fx-font-weight: bold;
 }
 
+
 .buttonsGanadores {
-    -fx-text-fill: #13b6d3;
+    -fx-text-fill: white;
+    -fx-background-color: #13b6d3;
     -fx-font-size: 50pt;
 }
 
+#panelBotones {
+    -fx-background-color: black;
+}
+
+.buttonEnJuego {
+    -fx-font-size: 30pt;
+}
+
+#escoger {
+    -fx-background-color: black;
+}
+
+#labelJugador {
+    -fx-text-fill: #13b6d3;
+    -fx-font-weight: bold;
+    -fx-font-family: "Droid Sans Bold";
+    -fx-font-size: 18pt;
+}
+
+Pane {
+    -fx-background-color: white;
+}
+
+#tituloJuego {
+    -fx-text-fill: #13b6d3;
+        -fx-font-weight: bold;
+        -fx-font-family: "Ubuntu Thin";
+        -fx-font-size: 42pt;
+}

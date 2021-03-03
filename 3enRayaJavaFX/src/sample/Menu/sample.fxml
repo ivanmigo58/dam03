@@ -10,11 +10,7 @@
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font></Button>
-        <Label alignment="CENTER" prefHeight="79.0" prefWidth="600.0" text="TRES EN RAYA" textAlignment="CENTER" textFill="#13b6d3">
-            <font>
-                <Font name="Droid Sans Bold" size="42.0" />
-            </font>
-        </Label>
+        <Label fx:id="tituloJuego" alignment="CENTER" prefHeight="79.0" prefWidth="600.0" text="TRES EN RAYA" textAlignment="CENTER" textFill="#13b6d3"/>
         <Button fx:id="salir" layoutX="14.0" layoutY="335.0" mnemonicParsing="false" onAction="#clickSalir" prefHeight="51.0" prefWidth="80.0" text="SALIR" textFill="#13b6d3" />
         <TextField fx:id="textFieldNombre" layoutX="222.0" layoutY="124.0" nodeOrientation="LEFT_TO_RIGHT" prefHeight="25.0" prefWidth="157.0" promptText="Intruce tu nombre" />
     </children>
