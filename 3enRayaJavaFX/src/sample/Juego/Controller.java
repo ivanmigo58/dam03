@@ -2,15 +2,19 @@ package sample.Juego;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
 import sample.Jugador.Jugador;
+import sample.Menu.MenuController;
+import sample.Ventana.Ventana;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +38,7 @@ public class Controller implements Initializable {
     ToggleGroup escoger;
 
     Juego juego;
-    List<Jugador> jugadorList = new ArrayList<>();
+    static  public List<Jugador> jugadorList = new ArrayList<>();
     static public Jugador jugadorActivo;
     private final String[] opcionesRadioButton = {"vs PC", "PC vs PC", "vs jugador 2"};
     private RadioButton[] radioButtons;
@@ -107,6 +111,53 @@ public class Controller implements Initializable {
     void restartGame() {
         juego.deshabilitarBotones();
         botonInicio.setVisible(true);
+    }
+
+    // Abrir ranking
+    public void abrirRanking(ActionEvent actionEvent) throws IOException {
+        // Creo la nueva ventana de clasificacion y la abro
+        Parent root = FXMLLoader.load(getClass().getResource("../Ranking/ranking.fxml"));
+        Stage stage = new Stage();
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add("styles.css");
+        stage.setScene(scene);
+        stage.setResizable(false);
+        stage.show();
+    }
+
+    // Cambio de usuario
+    public void cambioUsuario(ActionEvent actionEvent) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("../Menu/sample.fxml"));
+        Parent root = loader.load();
+        // Actualizo la scena del menu y la cargo
+        Ventana.scene = new Scene(root);
+        Ventana.scene.getStylesheets().add(Ventana.tema);
+        Ventana.stage.setScene(Ventana.scene);
+        Ventana.stage.setTitle("Tres en raya");
+        Ventana.stage.setResizable(false);
+
+    }
+
+    // Para cambiar el tema en vivo
+    public void cambiarTema(ActionEvent actionEvent) {
+        MenuItem menuItem = (MenuItem) actionEvent.getSource();
+        // Tema claro
+        if (menuItem.getId().equals("claro")) {
+            Ventana.scene.getStylesheets().remove("styles_dark.css");
+            Ventana.tema = "styles.css";
+        }
+        // Tema oscuro
+        else if (menuItem.getId().equals("oscuro")) {
+            Ventana.scene.getStylesheets().remove("styles.css");
+            Ventana.tema = "styles_dark.css";
+        }
+        // Aplico el tema
+        Ventana.scene.getStylesheets().add(Ventana.tema);
+    }
+
+    // Salir
+    public void salir(ActionEvent actionEvent) {
+        new MenuController().clickSalir(actionEvent);
     }
 
 }

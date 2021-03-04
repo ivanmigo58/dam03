@@ -1,0 +1,61 @@
+#buttons {
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-background-color: #404040;
+    -fx-text-fill: #13b6d3;
+    -fx-font-weight: bold;
+    -fx-border-color: #a6e4f0;
+}
+
+.botonesMenu {
+    -fx-border-radius: 20;
+    -fx-background-radius: 20;
+    -fx-background-color: #404040;
+    -fx-text-fill: #13b6d3;
+    -fx-font-weight: bold;
+    -fx-border-color: #a6e4f0;
+}
+
+
+.buttonsGanadores {
+    -fx-text-fill: black;
+    -fx-background-color: #13b6d3;
+    -fx-font-size: 50pt;
+}
+
+#panelBotones {
+    -fx-background-color: black;
+}
+
+.buttonEnJuego {
+    -fx-font-size: 30pt;
+    -fx-border-color: white;
+    -fx-background-color: black;
+}
+
+
+#labelJugador {
+    -fx-text-fill: #a6e4f0;
+    -fx-font-weight: bold;
+    -fx-font-family: "Droid Sans Bold";
+    -fx-font-size: 18pt;
+}
+
+Pane {
+    -fx-background-color: #13b6d3;
+}
+
+#tituloJuego {
+    -fx-text-fill: #a6e4f0;
+        -fx-font-weight: bold;
+        -fx-font-family: "Ubuntu Thin";
+        -fx-font-size: 42pt;
+}
+
+AnchorPane {
+    -fx-background-color: #13b6d3;
+}
+
+.radioButtons {
+    -fx-text-fill: #a6e4f0;
+}

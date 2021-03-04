@@ -3,7 +3,30 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="671.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Juego.Controller">
+<VBox prefHeight="400.0" prefWidth="671.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Juego.Controller">
+    <children>
+        <MenuBar fx:id="menuBar">
+            <menus>
+                <Menu mnemonicParsing="false" styleClass="opcionMenu" text="Ranking">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#abrirRanking" text="Visualizar" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" styleClass="opcionMenu" text="Opciones">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#cambioUsuario" text="Cambiar usuario" />
+                        <MenuItem mnemonicParsing="false" onAction="#salir" text="Salir" />
+                    </items>
+                </Menu>
+                <Menu mnemonicParsing="false" styleClass="opcionMenu" text="Tema">
+                    <items>
+                        <MenuItem fx:id="claro" mnemonicParsing="false" onAction="#cambiarTema" text="Claro" />
+                        <MenuItem fx:id="oscuro" mnemonicParsing="false" onAction="#cambiarTema" text="Oscuro" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+        <AnchorPane prefHeight="400.0" prefWidth="671.0">
     <children>
         <GridPane fx:id="panelBotones" layoutX="-1.0" prefHeight="400.0" prefWidth="428.0">
             <columnConstraints>
@@ -28,14 +51,16 @@
                 <Button fx:id="B22" disable="true" mnemonicParsing="false" onAction="#clickButton" prefHeight="353.0" prefWidth="309.0" styleClass="buttonEnJuego" textFill="#13b6d3" GridPane.columnIndex="2" GridPane.rowIndex="2" />
             </children>
         </GridPane>
-        <RadioButton fx:id="radioButton1" layoutX="491.0" layoutY="99.0" mnemonicParsing="false" text="RadioButton" textFill="#13b6d3">
+        <RadioButton styleClass="radioButtons" fx:id="radioButton1" layoutX="491.0" layoutY="99.0" mnemonicParsing="false" text="RadioButton" textFill="#13b6d3">
             <toggleGroup>
                 <ToggleGroup fx:id="escoger" />
             </toggleGroup>
         </RadioButton>
-        <RadioButton fx:id="radioButton2" layoutX="491.0" layoutY="153.0" mnemonicParsing="false" text="RadioButton" textFill="#13b6d3" toggleGroup="$escoger" />
-        <RadioButton fx:id="radioButton3" layoutX="491.0" layoutY="207.0" mnemonicParsing="false" text="RadioButton" textFill="#13b6d3" toggleGroup="$escoger" />
+        <RadioButton styleClass="radioButtons" fx:id="radioButton2" layoutX="491.0" layoutY="153.0" mnemonicParsing="false" text="RadioButton" textFill="#13b6d3" toggleGroup="$escoger" />
+        <RadioButton styleClass="radioButtons" fx:id="radioButton3" layoutX="491.0" layoutY="207.0" mnemonicParsing="false" text="RadioButton" textFill="#13b6d3" toggleGroup="$escoger" />
         <Label fx:id="labelJugador" alignment="CENTER" contentDisplay="CENTER" layoutX="427.0" layoutY="1.0" prefHeight="55.0" prefWidth="240.0" text="Jugador: " />
         <Button id="buttons" fx:id="botonInicio" layoutX="491.0" layoutY="273.0" mnemonicParsing="false" onAction="#clickStart" prefHeight="45.0" prefWidth="105.0" text="START" />
     </children>
-</AnchorPane>
+    </AnchorPane>
+    </children>
+</VBox>

@@ -4,6 +4,10 @@
     -fx-background-color: white;
     -fx-text-fill: #13b6d3;
     -fx-font-weight: bold;
+    -fx-border-color: #13b6d3;
+}
+#buttons:hover {
+-fx-background-color: #e3edf0;
 }
 
 
@@ -14,16 +18,20 @@
 }
 
 #panelBotones {
-    -fx-background-color: black;
+    -fx-background-color: white;
 }
 
 .buttonEnJuego {
     -fx-font-size: 30pt;
 }
-
-#escoger {
-    -fx-background-color: black;
+.buttonEnJuego:hover {
+    -fx-background-color: #e3edf0;
 }
+
+#botonInicio {
+    -fx-border-color: #13b6d3;
+}
+
 
 #labelJugador {
     -fx-text-fill: #13b6d3;
@@ -41,4 +49,8 @@ Pane {
         -fx-font-weight: bold;
         -fx-font-family: "Ubuntu Thin";
         -fx-font-size: 42pt;
+}
+
+AnchorPane {
+    -fx-background-color: #a6e4f0;
 }

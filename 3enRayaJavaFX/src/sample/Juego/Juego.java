@@ -42,6 +42,10 @@ public class Juego {
 
         if (botonesSeleccionados.size() >= buttons.size()) {
             controller.restartGame();
+            // Cuando no sea PC vs PC se suman los puntos
+            if (modoJuego != 2) {
+                Controller.jugadorList.get(Controller.jugadorList.size() - 1).addResultado(1);
+            }
         }
     }
 
@@ -74,8 +78,7 @@ public class Juego {
                     }
                 }
                 if (comprobarResultado()) {
-                    controller.restartGame();
-                    mostrarLineaGanadora(posicionesGanadoras);
+                    hayGanador();
 
                 } else {
                     cambioTurno();
@@ -106,8 +109,8 @@ public class Juego {
                 cambioTurno();
                 pcVSpc();
             } else {
-                controller.restartGame();
-                mostrarLineaGanadora(posicionesGanadoras);
+                hayGanador();
+
             }
         }
     }
@@ -119,8 +122,7 @@ public class Juego {
             buttonClick.setText(String.valueOf(turno));
             // Compruebo si hay un ganador
             if (comprobarResultado()) {
-                controller.restartGame();
-                mostrarLineaGanadora(posicionesGanadoras);
+                hayGanador();
             }
             // NO hay un ganador
             else {
@@ -227,6 +229,7 @@ public class Juego {
         for (String id : idButtons) {
             for (Button button : buttons) {
                 if (button.getId().equals("B" + id)) {
+                    button.getStyleClass().remove("buttonEnJuego");
                     button.getStyleClass().add("buttonsGanadores");
                 }
             }
@@ -247,5 +250,23 @@ public class Juego {
             button.setDisable(false);
         }
     }
+
+    // Se ejecuta si hay ganador
+    private void hayGanador() {
+        // Se modifican los puntos cuando no es pc vs pc
+        if (modoJuego != 2) {
+            // Obtengo si ha ganado, perdido o empatado
+            if (turno.equals(Turno.X)) {
+                Controller.jugadorList.get(Controller.jugadorList.size() - 1).addResultado(0);
+            } else if (turno.equals(Turno.O)) {
+                Controller.jugadorList.get(Controller.jugadorList.size() - 1).addResultado(2);
+            }
+        }
+        // Reseteo el juego
+        controller.restartGame();
+        // Muestro la linea ganadora
+        mostrarLineaGanadora(posicionesGanadoras);
+    }
+
 
 }
